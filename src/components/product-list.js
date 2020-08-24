@@ -1,31 +1,37 @@
-import React, { useEffect } from "react";
-import Product from "../components/product";
+import React, { useEffect, useState } from "react"
+import Product from "../components/product"
 
-const ProductList = (products) => {
-  console.log('this is what we get', products)
-
-  const [allProducts, setAllProducts] = useState([]);
+const ProductList = () => {
+  const [allProducts, setAllProducts] = useState([])
 
   useEffect(() => {
+    fetch('/product_list.json')
+      .then(response => response.json())
+      .then(data => {
+        setAllProducts(data)
+      })
+  })
 
-    let productList = products.map((product) => {
-      return (
-        <Product
-          key={product.id}
-          image={product.image}
-          name={product.product_name}
-          actualPrice={product.actual_price}
-          brand={product.brand_name}
-        />
-      );
-    })
+  let productList = allProducts.map((product) => {
+
+    return (
+      <Product
+        key={product.id}
+        image={product.filename}
+        name={product.product_name}
+        actualPrice={product.actual_price}
+        brand={product.brand_name}
+      />
+    );
   })
 
   return (
     <div>
-      <div>perperpgojaj </div>
+      <div>{productList}</div>
     </div>
   );
 };
 
-export default ProductList;
+export default ProductList
+
+

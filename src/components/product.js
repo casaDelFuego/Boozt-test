@@ -1,21 +1,19 @@
 import React from 'react'
 
 const Product = (props) => {
-  const { image, name, brand, actualPrice } = props;
   return (
     <div>
-      this is one item
       <div >
-        <img src={image} alt={name} />
+        <img src={props.image} alt={props.name} />
       </div>
       <div>
-        <p>Brand: <span>{brand}</span></p>
-        <p>Name: <span>{name}</span></p>
-        <p>Price: <span>{actualPrice} kr</span></p>
+        <p>Name: <span>{props.name}</span></p>
+        <p>Brand: <span>{props.brand}</span></p>
+        <p>Price: <span>{props.actualPrice} kr</span></p>
       </div>
     </div>
-  );
-};
+  )
+}
 
 
-export default Product;
+export default Product
