@@ -44,7 +44,7 @@ const ProductList = () => {
   }
 
 
-  let productList = allProducts.map((product) => {
+  let productList = currentProducts.map((product) => {
     return (
       <Product
         key={product.id}
