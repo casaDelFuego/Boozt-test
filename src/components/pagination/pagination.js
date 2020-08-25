@@ -1,11 +1,11 @@
 import React from 'react'
+import './pagination.scss'
 
 const Pagination = ({ productsPerPage, totalProducts, currentPage, paginate }) => {
   const pageNumbers = []
-  console.log('current psge', currentPage)
 
   const totalNumberOfPages = Math.ceil(totalProducts / productsPerPage)
-  let start = Math.max(1, (currentPage || 1) - 5)
+  let start = Math.max(1, currentPage - 5)
   const end = Math.min(totalNumberOfPages, start + 10)
 
   for (; start <= end; start++) {
@@ -16,8 +16,8 @@ const Pagination = ({ productsPerPage, totalProducts, currentPage, paginate }) =
     <nav>
       <ul >
         {pageNumbers.map(number => (
-          <li key={number} >
-            <a onClick={() => paginate(number)} href='!#' >
+          <li key={number}>
+            <a onClick={() => paginate(number)} href='!#' className={number === currentPage ? 'active' : ''} >
               {number}
             </a>
           </li>

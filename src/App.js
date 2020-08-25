@@ -1,6 +1,6 @@
 import React from 'react'
 import './App.scss'
-import ProductList from '../src/components/product-list'
+import ProductList from '../src/components/product-list/product-list'
 
 
 const App = () => {

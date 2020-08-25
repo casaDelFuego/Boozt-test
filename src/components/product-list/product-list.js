@@ -1,13 +1,14 @@
 import React, { useEffect, useState } from 'react'
-import Product from '../components/product'
-import Sorting from '../components/sorting'
-import Pagination from '../components/pagination'
+import './product-list.scss'
+import Product from '../product/product'
+import Sorting from '../sorting/sorting'
+import Pagination from '../pagination/pagination'
 
 
 const ProductList = () => {
   const [allProducts, setAllProducts] = useState([])
   const [currentPage, setCurrentPage] = useState(1);
-  const [productsPerPage] = useState(50);
+  const [productsPerPage] = useState(48);
 
   // Retrieve the data
   useEffect(() => {
@@ -57,7 +58,7 @@ const ProductList = () => {
   })
 
   return (
-    <div>
+    <div className="p_container">
       <Sorting sortByLowerPrice={sortByLowerPrice}
         sortByHigherPrice={sortByHigherPrice} />
       <Pagination
@@ -66,7 +67,7 @@ const ProductList = () => {
         currentPage={currentPage}
         paginate={paginate}
       />
-      <div>{productList}</div>
+      <div className="p_list">{productList}</div>
       <Pagination
         productsPerPage={productsPerPage}
         totalProducts={allProducts.length}

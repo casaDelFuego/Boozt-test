@@ -1,0 +1,41 @@
+@import '../../styles/variables.scss';
+
+nav {
+  display: flex;
+  justify-content: center;
+  list-style: none;
+  align-items: center;
+  margin: 1em;
+
+  ul {
+    margin: 0;
+    padding: 0;
+    list-style: none;
+  }
+
+  li { 
+    display: inline-block; 
+  }
+    
+  a {
+    display: block;
+    padding: 6px 12px;
+    text-decoration: none;
+    transition: background-color .3s;
+  
+    &:hover:not(.active) {
+      background-color: $lightgrey
+    }
+
+    &.active {
+      background-color:$lightgrey;
+      color: $white;
+    }
+  }
+}
+
+@media (max-width: $screen-sm-min) {
+  nav {
+      margin: 0;
+  }
+}
