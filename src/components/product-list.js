@@ -1,26 +1,15 @@
 import React, { useEffect, useState } from 'react'
 import Product from '../components/product'
 import Sorting from '../components/sorting'
+import Pagination from '../components/pagination'
 
 
 const ProductList = () => {
   const [allProducts, setAllProducts] = useState([])
+  const [currentPage, setCurrentPage] = useState(1);
+  const [productsPerPage] = useState(9);
 
-
-  const sortByLowerPrice = () => {
-    const sortListByLowerPrice = [...allProducts].sort(
-      (a, b) => a.actual_price - b.actual_price
-    );
-    setAllProducts(sortListByLowerPrice)
-  }
-
-  const sortByHigherPrice = () => {
-    const sortListByHigherPrice = [...allProducts].sort(
-      (a, b) => b.actual_price - a.actual_price
-    );
-    setAllProducts(sortListByHigherPrice)
-  }
-
+  // Retrieve the data
   useEffect(() => {
     if (allProducts.length) return
 
@@ -31,7 +20,31 @@ const ProductList = () => {
       })
   })
 
-  let productList = allProducts.slice(0, 20).map((product) => {
+  // Get current products
+  const indexOfLastProduct = currentPage * productsPerPage
+  const indexOfFirstProduct = indexOfLastProduct - productsPerPage
+  const currentProducts = allProducts.slice(indexOfFirstProduct, indexOfLastProduct)
+
+  // Change page
+  const paginate = pageNumber => setCurrentPage(pageNumber)
+
+  // Sorting functions
+  const sortByLowerPrice = () => {
+    const sortListByPriceAscending = [...allProducts].sort(
+      (a, b) => a.actual_price - b.actual_price
+    );
+    setAllProducts(sortListByPriceAscending)
+  }
+
+  const sortByHigherPrice = () => {
+    const sortListByPriceDescending = [...allProducts].sort(
+      (a, b) => b.actual_price - a.actual_price
+    );
+    setAllProducts(sortListByPriceDescending)
+  }
+
+
+  let productList = allProducts.map((product) => {
     return (
       <Product
         key={product.id}
@@ -48,6 +61,11 @@ const ProductList = () => {
       <Sorting sortByLowerPrice={sortByLowerPrice}
         sortByHigherPrice={sortByHigherPrice} />
       <div>{productList}</div>
+      <Pagination
+        productsPerPage={productsPerPage}
+        totalProducts={allProducts.length}
+        paginate={paginate}
+      />
     </div>
   );
 };
