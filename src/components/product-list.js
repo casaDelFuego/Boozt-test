@@ -7,7 +7,7 @@ import Pagination from '../components/pagination'
 const ProductList = () => {
   const [allProducts, setAllProducts] = useState([])
   const [currentPage, setCurrentPage] = useState(1);
-  const [productsPerPage] = useState(9);
+  const [productsPerPage] = useState(50);
 
   // Retrieve the data
   useEffect(() => {
@@ -60,10 +60,17 @@ const ProductList = () => {
     <div>
       <Sorting sortByLowerPrice={sortByLowerPrice}
         sortByHigherPrice={sortByHigherPrice} />
+      <Pagination
+        productsPerPage={productsPerPage}
+        totalProducts={allProducts.length}
+        currentPage={currentPage}
+        paginate={paginate}
+      />
       <div>{productList}</div>
       <Pagination
         productsPerPage={productsPerPage}
         totalProducts={allProducts.length}
+        currentPage={currentPage}
         paginate={paginate}
       />
     </div>
