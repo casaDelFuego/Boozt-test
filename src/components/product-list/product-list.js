@@ -7,8 +7,8 @@ import Pagination from '../pagination/pagination'
 
 const ProductList = () => {
   const [allProducts, setAllProducts] = useState([])
-  const [currentPage, setCurrentPage] = useState(1);
-  const [productsPerPage] = useState(48);
+  const [currentPage, setCurrentPage] = useState(1)
+  const [productsPerPage] = useState(48)
 
   // Retrieve the data
   useEffect(() => {
@@ -33,14 +33,14 @@ const ProductList = () => {
   const sortByLowerPrice = () => {
     const sortListByPriceAscending = [...allProducts].sort(
       (a, b) => a.actual_price - b.actual_price
-    );
+    )
     setAllProducts(sortListByPriceAscending)
   }
 
   const sortByHigherPrice = () => {
     const sortListByPriceDescending = [...allProducts].sort(
       (a, b) => b.actual_price - a.actual_price
-    );
+    )
     setAllProducts(sortListByPriceDescending)
   }
 
@@ -54,7 +54,7 @@ const ProductList = () => {
         actualPrice={product.actual_price}
         brand={product.brand_name}
       />
-    );
+    )
   })
 
   return (
@@ -75,8 +75,8 @@ const ProductList = () => {
         paginate={paginate}
       />
     </div>
-  );
-};
+  )
+}
 
 export default ProductList
 

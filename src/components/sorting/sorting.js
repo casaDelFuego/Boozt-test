@@ -3,7 +3,7 @@ import './sorting.scss'
 
 function Sorting(props) {
   const onLowPrice = () => {
-    props.sortByLowerPrice();
+    props.sortByLowerPrice()
   }
 
   const onHighPrice = () => {
